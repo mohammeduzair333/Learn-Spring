@@ -14,18 +14,41 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
     }
 
-    //@GetMapping("/my-customer")
-//    public Customer getMyName() {
-//        Customer c=new Customer("mohammeduzair@gmaul.com","uzair222");
-//        return c;
-//    }
-    @PostMapping("/my-order")
-    public Bill PostMyOrder(@RequestBody Bill bill) {
-        Bill i = new Bill("Pizza", 2, 300* bill.quantity);
-         return i;
-
+    @PostMapping("/my-student")
+    public OTP PostMyOTP(@RequestBody Student stu) {
+        OTP o=new OTP(getAlphaNumericString(20));
+         return o;
 
     }
+    static String getAlphaNumericString(int n)
+    {
+
+        // chose a Character random from this String
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+
+        for (int i = 0; i < n; i++) {
+
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                    = (int)(AlphaNumericString.length()
+                    * Math.random());
+
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+
+        return sb.toString();
+    }
+
 
 }
+
+
 
