@@ -1,7 +1,5 @@
 package com.example.databasedemo;
 
-import com.example.databasedemo.repository.RollNo;
-import com.example.databasedemo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,42 +13,55 @@ import java.util.Optional;
 @RestController
 public class DatabasedemoApplication {
     @Autowired
-    StudentRepository studentRepository;
-
+    NotesRepository notesRepository;
     public static void main(String[] args) {
         SpringApplication.run(DatabasedemoApplication.class, args);
-    }
-
-    @PostMapping("/my-student")
-    public Student PostMyStudent(@RequestBody Student student) {
-
-        studentRepository.save(student);
-        return student;
 
     }
 
-    @GetMapping("/get-allstudent")
-    public List<Student> ListofStudent() {
 
-        return studentRepository.findAll();
+@PostMapping("save-note")
+public Notes saveNote(@RequestBody  Notes note){
+        Notes n=new Notes(note.getText(),System.currentTimeMillis());
+        notesRepository.save(n);
+        return n;
 
-    }
+}
+@GetMapping("get-notes")
+    public List<Notes> getNotes(Notes get){
+       return notesRepository.findAll();
+}
 
-    @DeleteMapping("/delete-allstudent")
-    public String deleteofStudent() {
-        studentRepository.deleteAll();
-        return "deleted";
-    }
 
-    @PostMapping("/delete-astudent")
-    public String Studentrollno(RollNo id) {
-        Optional<Student> s = studentRepository.findById(id.getId());
-        if (s.isPresent()) {
-            studentRepository.delete(s.get());
-            return "Deleted";
+@DeleteMapping("deleteAll")
+public String deleteAll(){
+        notesRepository.deleteAll();
+        return"deleted successufully";
+}
+
+
+@PostMapping("delete-singlenotes")
+    public String delete(TextLine lineno){
+        Optional<Notes>s=notesRepository.findById(lineno.getTextlineno());
+        if(s.isPresent()) {
+            notesRepository.delete(s.get());
+            return "deleted";
         }
         return "not deleted";
-    }
+
 
 }
 
+
+
+
+}
+
+//notes app   1.2fileds ---->text and time
+// get 1 notes
+//get all notes
+//create all note
+//delete 1 notes
+//delete all notes
+//Update notes
+//epoch
