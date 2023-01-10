@@ -24,26 +24,32 @@ public class Notes {
     }
 
     public long getTextlineno() {
+
         return textlineno;
     }
 
     public void setTextlineno(int textlineno) {
+
         this.textlineno = textlineno;
     }
 
     public String getText() {
+
         return text;
     }
 
     public void setText(String text) {
+
         this.text = text;
     }
 
     public long getDate() {
+
         return date;
     }
 
     public void setDate(long date) {
+
         this.date = date;
     }
 
