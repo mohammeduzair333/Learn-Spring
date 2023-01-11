@@ -45,6 +45,7 @@ public class DatabasedemoApplication {
     @GetMapping("get-notes")
     public List<Notes> getNotes() {
         //getting all the notes from the database
+
         return notesRepository.findAll();
 
     }
@@ -53,6 +54,7 @@ public class DatabasedemoApplication {
     public Notes getNote(@RequestBody Notes singleNote){
         Optional<Notes> n=notesRepository.findById(singleNote.getTextlineno());
         if(n.isPresent()){
+           // notesRepository.save(n.get());
             return n.get();
         }
         throw new ResponseStatusException(
