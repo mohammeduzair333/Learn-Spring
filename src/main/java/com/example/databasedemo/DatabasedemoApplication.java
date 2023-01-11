@@ -3,7 +3,9 @@ package com.example.databasedemo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,6 +47,17 @@ public class DatabasedemoApplication {
         //getting all the notes from the database
         return notesRepository.findAll();
 
+    }
+
+    @GetMapping("get-note")
+    public Notes getNote(@RequestBody Notes singleNote){
+        Optional<Notes> n=notesRepository.findById(singleNote.getTextlineno());
+        if(n.isPresent()){
+            return n.get();
+        }
+        throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "entity not found"
+        );
     }
 
 
