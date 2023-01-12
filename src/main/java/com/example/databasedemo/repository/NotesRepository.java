@@ -1,5 +1,6 @@
-package com.example.databasedemo;
+package com.example.databasedemo.repository;
 
+import com.example.databasedemo.models.Notes;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NotesRepository extends JpaRepository<Notes, Long> {

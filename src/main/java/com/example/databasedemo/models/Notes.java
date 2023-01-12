@@ -1,4 +1,4 @@
-package com.example.databasedemo;
+package com.example.databasedemo.models;
 
 import jakarta.persistence.*;
 
@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Notes {
     @Id
     @GeneratedValue
-    long textlineno;
+    long id;
     @Column
     String text;
     @Column
@@ -23,14 +23,14 @@ public class Notes {
 
     }
 
-    public long getTextlineno() {
+    public long getId() {
 
-        return textlineno;
+        return id;
     }
 
-    public void setTextlineno(int textlineno) {
+    public void setId(int id) {
 
-        this.textlineno = textlineno;
+        this.id = id;
     }
 
     public String getText() {
@@ -55,6 +55,6 @@ public class Notes {
 
     @Override
     public String toString() {
-        return "Notes{" + "textlineno=" + textlineno + ", text='" + text + '\'' + ", date=" + date + '}';
+        return "Notes{" + "id=" +id + ", text='" + text + '\'' + ", date=" + date + '}';
     }
 }
