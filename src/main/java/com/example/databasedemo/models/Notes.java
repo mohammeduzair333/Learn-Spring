@@ -7,14 +7,15 @@ import jakarta.persistence.*;
 @Table
 public class Notes {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "note_seq_generator")
+    @SequenceGenerator(name = "note_seq_generator", sequenceName = "note_seq", allocationSize = 1)
     long id;
     @Column
     String text;
     @Column
     long date;
 
-    public Notes( String text, long date){
+    public Notes(String text, long date) {
         this.text = text;
         this.date = date;
     }
@@ -55,6 +56,6 @@ public class Notes {
 
     @Override
     public String toString() {
-        return "Notes{" + "id=" +id + ", text='" + text + '\'' + ", date=" + date + '}';
+        return "Notes{" + "id=" + id + ", text='" + text + '\'' + ", date=" + date + '}';
     }
 }
